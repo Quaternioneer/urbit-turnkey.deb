@@ -1,0 +1,9 @@
+Package: urbit-turnkey
+Version: 1.0.1
+Architecture: all
+Maintainer: ~botter-nidnul <botter-nidnul@protonmail.com>
+Installed-Size: 21
+Depends: urbit-service, usbmount, dos2unix, fping
+Section: custom
+Priority: optional
+Description: Urbit turnkey functionality

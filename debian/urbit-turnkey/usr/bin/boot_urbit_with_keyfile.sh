@@ -14,32 +14,25 @@ Main() {
 } # Main
 
 CheckForExistingUrbit() {
-	if [[ -f /home/urbit/.urbit_booted ]]
-		then	
-			(echo "Urbit already booted on this device" >&2 )
-			exit 3
-	fi
+	[[ -f /home/urbit/.urbit_booted ]] && \
+		(echo "Urbit already booted on this device" >&2 )
+	exit 3
 } # CheckForExistingUrbit
 
 SetVariablesFromKeyfile() {
 	KEYFILE=`ls /media/usb/*.key | head -1`
-	PIER_NAME=`echo $KEYFILE | grep -Po "(?!.*\/).*" | grep -Po ".*-"`
+	PIER_NAME=`echo $KEYFILE | grep -Po '(?!.*\/).*' | grep -Po ".*-"`
 	PIER_NAME=${PIER_NAME:0:-1}
 } # SetVariablesFromKeyfile
 
 TestNetwork() {
-	if (fping urbit.org 2>/dev/null | grep -q alive) 
-		then
-			echo "Connected"
-		else
-			(echo "Unable to boot Urbit successfully, network down" >&2 )
-			exit 4
-	fi
-			
+	fping urbit.org 2>/dev/null | grep -q alive || \
+		(echo "Unable to boot Urbit successfully, network down" >&2 )
+	exit 4
 } # TestNetwork
 
 UpgradeUrbit() {
-	echo "Trying to upgrade Urbit related packages. T-2!"
+	echo "Trying to upgrade Urbit related packages"
 	export DEBIAN_FRONTEND=noninteractive
 	export APT_LISTCHANGES_FRONTEND=none
 	apt-get update
@@ -47,7 +40,7 @@ UpgradeUrbit() {
 } # UpgradeUrbit
 
 BootUrbit() {
-	echo "Starting Urbit boot. T-1!"
+	echo "Starting Urbit boot"
 	if [[ `/usr/bin/urbit_boot_monitor.sh $PIER_NAME $KEYFILE` ]]
 		then
 			EnableUrbitService

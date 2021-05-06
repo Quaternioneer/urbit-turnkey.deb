@@ -1,0 +1,6 @@
+57558b454ddf1ea07a375c90bf481de4  lib/systemd/system/urbit-turnkey.service
+629bc2422dabb12068e59980e33f14aa  usr/bin/boot_urbit_with_keyfile.sh
+46e1b6e630bfe83f13a548096d33fe6c  usr/bin/configure_wifi_from_file.sh
+048c09f420e4b3f25c06c7443b761e33  usr/bin/urbit_boot_monitor.sh
+bc66a6d0468f7302d966307a0239eb55  usr/bin/watch_for_keyfile.sh
+a2500a6e1e41f0da8a20806c8af65094  usr/share/doc/urbit-turnkey/changelog.gz

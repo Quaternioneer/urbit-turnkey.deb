@@ -1,0 +1,4 @@
+./boot_urbit_with_keyfile.sh
+./configure_wifi_from_file.sh
+./urbit_boot_monitor.sh
+./watch_for_keyfile.sh
