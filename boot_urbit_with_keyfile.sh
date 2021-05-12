@@ -23,7 +23,7 @@ CheckForExistingUrbit() {
 
 SetVariablesFromKeyfile() {
 	KEYFILE=`ls /media/usb/*.key | head -1`
-	PIER_NAME=`echo $KEYFILE | grep -Po "(?!.*\/).*" | grep -Po ".*-"`
+	PIER_NAME=`echo $KEYFILE | grep -Po "(?!.*\/).*" | grep -Po ".*-"` #This regex matches everthing which isn't followed by a /
 	PIER_NAME=${PIER_NAME:0:-1}
 } # SetVariablesFromKeyfile
 
@@ -39,7 +39,7 @@ TestNetwork() {
 } # TestNetwork
 
 UpgradeUrbit() {
-	echo "Trying to upgrade Urbit related packages. T-2!"
+	echo "Trying to upgrade Urbit related packages."
 	export DEBIAN_FRONTEND=noninteractive
 	export APT_LISTCHANGES_FRONTEND=none
 	apt-get update
@@ -47,7 +47,7 @@ UpgradeUrbit() {
 } # UpgradeUrbit
 
 BootUrbit() {
-	echo "Starting Urbit boot. T-1!"
+	echo "Starting Urbit boot."
 	if [[ `/usr/bin/urbit_boot_monitor.sh $PIER_NAME $KEYFILE` ]]
 		then
 			EnableUrbitService
